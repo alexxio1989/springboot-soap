@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://soap-test-schema/helloworld" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://soap-test-schema/helloworld" targetNamespace="http://soap-test-schema/helloworld">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://soap-test-schema/helloworld">
+
+	<xs:element name="helloWorldRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="message" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="helloWorldResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="out" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="helloWorldRequest">
+    <wsdl:part element="tns:helloWorldRequest" name="helloWorldRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="helloWorldResponse">
+    <wsdl:part element="tns:helloWorldResponse" name="helloWorldResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorldPort">
+    <wsdl:operation name="helloWorld">
+      <wsdl:input message="tns:helloWorldRequest" name="helloWorldRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:helloWorldResponse" name="helloWorldResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldPortSoap11" type="tns:HelloWorldPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="helloWorld">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="helloWorldRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="helloWorldResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldPortService">
+    <wsdl:port binding="tns:HelloWorldPortSoap11" name="HelloWorldPortSoap11">
+      <soap:address location="http://localhost:8080/soapws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
