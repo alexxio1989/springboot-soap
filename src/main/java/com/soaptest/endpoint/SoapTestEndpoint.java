@@ -11,7 +11,7 @@ import soap_test_schema.helloworld.HelloWorldResponse;
 
 
 @Endpoint
-public class SoapTestEndpoint {
+public class SoapTestEndpoint { 
 	
 	private static final String NAMESPACE_URI = "http://soap-test-schema/helloworld";
 	
